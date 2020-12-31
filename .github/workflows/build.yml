@@ -22,7 +22,7 @@ jobs:
       run: cd third_party/jpeg-xl &&
            git apply ../../patches.diff &&
            export CMAKE_PREFIX_PATH=`brew --prefix giflib`:`brew --prefix libjpeg`:`brew --prefix libpng`:`brew --prefix sdl2`:`brew --prefix zlib` &&
-           ./ci.sh release
+           SKIP_TEST=1 ./ci.sh release
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2
       with:
