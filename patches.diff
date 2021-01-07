@@ -1,0 +1,13 @@
+diff --git a/bash_test.sh b/bash_test.sh
+index 94489ec..8886c70 100755
+--- a/bash_test.sh
++++ b/bash_test.sh
+@@ -145,7 +145,7 @@ test_deps_version() {
+     fi
+     line="${line#[submodule \"}"
+     line="${line%\"]}"
+-    local varname="${line^^}"
++    local varname=$(tr '[:lower:]' '[:upper:]' <<< "${line}")
+     varname="${varname/\//_}"
+     if ! grep -F "${varname}=" deps.sh >/dev/null; then
+       # Ignoring submodule not in deps.sh
