@@ -20,9 +20,8 @@ jobs:
            brew install clang-format coreutils doxygen giflib ninja  sdl2 zlib
     - name: Build
       run: cd third_party/jpeg-xl &&
-           git apply ../../patches.diff &&
            export CMAKE_PREFIX_PATH=`brew --prefix giflib`:`brew --prefix libjpeg`:`brew --prefix libpng`:`brew --prefix sdl2`:`brew --prefix zlib` &&
-           SKIP_TEST=1 ./ci.sh release
+           SKIP_TEST=1 ./ci.sh release -DCMAKE_FIND_FRAMEWORK=NEVER
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2
       with:
