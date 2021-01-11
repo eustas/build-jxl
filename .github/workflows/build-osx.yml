@@ -1,4 +1,4 @@
-name: Build JPEG XL
+name: Build JPEG XL on OSX
 
 on:
   push:
@@ -16,8 +16,8 @@ jobs:
       with:
         submodules: recursive
     - name: Install dependencies
-      run: echo "Assuming [cmake, libpng, parallel] are already installed" &&
-           brew install clang-format coreutils doxygen giflib jpeg-turbo ninja sdl2 zlib
+      run: echo "Assuming [cmake, libpng] are already installed" &&
+           brew install coreutils doxygen giflib jpeg-turbo ninja sdl2 zlib
     - name: Build
       run: cd third_party/jpeg-xl &&
            git apply ../../patches.diff &&

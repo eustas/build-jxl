@@ -1,0 +1,31 @@
+name: Build JPEG XL on Windows
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: windows-2019
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: recursive
+    - name: Install dependencies
+      run: vcpkg install giflib libjpeg-turbo libpng sdl2 zlib &&
+           choco install doxygen ninja
+#      run: brew install coreutils doxygen giflib jpeg-turbo libpng ninja sdl2 zlib
+#    - name: Build
+#      run: cd third_party/jpeg-xl &&
+#           git apply ../../patches.diff &&
+#           export CMAKE_PREFIX_PATH=`brew --prefix giflib`:`brew --prefix jpeg-turbo`:`brew --prefix libpng`:`brew --prefix sdl2`:`brew --prefix zlib` &&
+#           ./ci.sh release -DCMAKE_FIND_FRAMEWORK=NEVER
+#    - name: Upload a Build Artifact
+#      uses: actions/upload-artifact@v2
+#      with:
+#        name: mac
+#        path: third_party/jpeg-xl/build/tools
