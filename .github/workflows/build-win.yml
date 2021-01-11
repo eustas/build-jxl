@@ -17,7 +17,7 @@ jobs:
         submodules: recursive
     - name: Install dependencies
       run: vcpkg install giflib libjpeg-turbo libpng sdl2 zlib &&
-           choco install choco install doxygen.install ninja
+           choco install doxygen.install ninja
     - name: Build
       run: cd third_party &&
            cd jpeg-xl
